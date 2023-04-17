@@ -19,9 +19,7 @@ struct ContentView: View {
             SliderView(value: $sliderValue,
                        digitalValue: $digitalValue,
                        textColor: .red)
-            Button("Done") {
-                checkDigitalValue()
-            }
+            Button("Done", action: checkDigitalValue)
             Spacer()
         }
         .padding()
