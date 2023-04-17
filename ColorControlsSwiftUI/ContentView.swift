@@ -20,12 +20,19 @@ struct ContentView: View {
                        digitalValue: $digitalValue,
                        textColor: .red)
             Button("Done") {
-                displayedDigitalValue = digitalValue
-                digitalValue = ""
+                checkDigitalValue()
             }
             Spacer()
         }
         .padding()
+    }
+    
+    private func checkDigitalValue() {
+        if let _ = Double(digitalValue) {
+            displayedDigitalValue = digitalValue
+        }
+        digitalValue = ""
+        return
     }
 }
 
