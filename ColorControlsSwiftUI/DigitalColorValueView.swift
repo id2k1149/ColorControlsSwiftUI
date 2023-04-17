@@ -9,12 +9,13 @@ import SwiftUI
 
 struct DigitalColorValueView: View {
     @Binding var sliderValue: Double
-    @Binding var digitalValue: String
+//    let digitalValue: String
+    let displayedDigitalValue: String
     
     var body: some View {
         HStack {
             Text("\(lround(sliderValue)),").font(.largeTitle)
-            Text(digitalValue).font(.largeTitle)
+            Text(displayedDigitalValue).font(.largeTitle)
         }
     }
 }

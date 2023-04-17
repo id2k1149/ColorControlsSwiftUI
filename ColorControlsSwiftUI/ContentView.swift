@@ -10,14 +10,19 @@ import SwiftUI
 struct ContentView: View {
     @State private var sliderValue = Double.random(in: 0...255)
     @State private var digitalValue = ""
+    @State private var displayedDigitalValue = ""
     
     var body: some View {
         VStack {
             DigitalColorValueView(sliderValue: $sliderValue,
-                          digitalValue: $digitalValue)
+                                  displayedDigitalValue: displayedDigitalValue)
             SliderView(value: $sliderValue,
                        digitalValue: $digitalValue,
                        textColor: .red)
+            Button("Done") {
+                displayedDigitalValue = digitalValue
+                digitalValue = ""
+            }
             Spacer()
         }
         .padding()
