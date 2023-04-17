@@ -16,8 +16,9 @@ struct SliderView: View {
         HStack {
             Text("0").foregroundColor(textColor)
             Slider(value: $value, in: 0...255, step: 1)
+                .accentColor(textColor)
             Text("255").foregroundColor(textColor)
-            TextField("0", text: $digitalValue)
+            TextField("\(lround(value))", text: $digitalValue)
                 .frame(width: 48)
                 .textFieldStyle(.roundedBorder)
             

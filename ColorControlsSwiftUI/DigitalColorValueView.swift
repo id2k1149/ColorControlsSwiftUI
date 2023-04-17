@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct DigitalColorValueView: View {
-    @Binding var sliderValue: Double
+    @Binding var sliderValueVar: Double
     
     var body: some View {
-        HStack {
-            Text("\(lround(sliderValue))").font(.largeTitle)
-        }
+        Text("\(lround(sliderValueVar))").font(.largeTitle)
     }
 }
