@@ -14,7 +14,9 @@ struct ContentView: View {
         VStack {
             Text("\(sliderValue)")
                 .font(.largeTitle)
-            SliderView(value: $sliderValue)
+            SliderView(value: $sliderValue, textColor: .red)
+            SliderView(value: $sliderValue, textColor: .green)
+            SliderView(value: $sliderValue, textColor: .blue)
             Spacer()
         }
         .padding()

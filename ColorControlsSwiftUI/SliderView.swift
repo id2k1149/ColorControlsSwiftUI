@@ -9,12 +9,13 @@ import SwiftUI
 
 struct SliderView: View {
     @Binding var value: Double
+    let textColor: Color
     
     var body: some View {
         HStack {
-            Text("0").foregroundColor(.red)
+            Text("0").foregroundColor(textColor)
             Slider(value: $value)
-            Text("255").foregroundColor(.red)
+            Text("255").foregroundColor(textColor)
         }
     }
 }
