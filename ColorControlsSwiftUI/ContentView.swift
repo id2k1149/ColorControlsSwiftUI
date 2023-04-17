@@ -19,12 +19,11 @@ struct ContentView: View {
                        digitalValue: $digitalValue,
                        textColor: .red)
             Button("Done", action: checkDigitalValue)
-                .alert("Wrong Format",
-                       isPresented: $alertPresented) {
-                    Button("OK") {}
-                } message: {
-                    Text("Enter value from 0 to 255")
-                }
+                .alert(
+                    "Wrong Format",
+                    isPresented: $alertPresented,
+                    actions: {}
+                ) { Text("Enter value from 0 to 255") }
 
             Spacer()
         }
