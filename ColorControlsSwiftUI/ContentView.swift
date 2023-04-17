@@ -10,12 +10,10 @@ import SwiftUI
 struct ContentView: View {
     @State private var sliderValue = Double.random(in: 0...255)
     @State private var digitalValue = ""
-    @State private var displayedDigitalValue = ""
     
     var body: some View {
         VStack {
-            DigitalColorValueView(sliderValue: $sliderValue,
-                                  displayedDigitalValue: displayedDigitalValue)
+            DigitalColorValueView(sliderValue: $sliderValue)
             SliderView(value: $sliderValue,
                        digitalValue: $digitalValue,
                        textColor: .red)
@@ -27,7 +25,7 @@ struct ContentView: View {
     
     private func checkDigitalValue() {
         if let _ = Double(digitalValue) {
-            displayedDigitalValue = digitalValue
+            sliderValue = Double(digitalValue) ?? 0
         }
         digitalValue = ""
         return
