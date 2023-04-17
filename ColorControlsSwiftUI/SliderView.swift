@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SliderView: View {
     @Binding var value: Double
+    @Binding var digitalValue: String
     let textColor: Color
     
     var body: some View {
@@ -16,6 +17,10 @@ struct SliderView: View {
             Text("0").foregroundColor(textColor)
             Slider(value: $value, in: 0...255, step: 1)
             Text("255").foregroundColor(textColor)
+            TextField("0", text: $digitalValue)
+                .frame(width: 48)
+                .textFieldStyle(.roundedBorder)
+            
         }
     }
 }

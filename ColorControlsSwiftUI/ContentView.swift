@@ -9,14 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var sliderValue = Double.random(in: 0...255)
+    @State private var digitalValue = ""
     
     var body: some View {
         VStack {
-            Text("\(lround(sliderValue))")
-                .font(.largeTitle)
-            SliderView(value: $sliderValue, textColor: .red)
-            SliderView(value: $sliderValue, textColor: .green)
-            SliderView(value: $sliderValue, textColor: .blue)
+            DigitalColorValueView(sliderValue: $sliderValue,
+                          digitalValue: $digitalValue)
+            SliderView(value: $sliderValue,
+                       digitalValue: $digitalValue,
+                       textColor: .red)
             Spacer()
         }
         .padding()
@@ -28,5 +29,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-
