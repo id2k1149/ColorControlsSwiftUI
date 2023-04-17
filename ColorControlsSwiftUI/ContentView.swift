@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var sliderValue = Double.random(in: 0...255)
     @State private var digitalValue = ""
+    @State private var alertPresented = false
     
     var body: some View {
         VStack {
@@ -18,6 +19,13 @@ struct ContentView: View {
                        digitalValue: $digitalValue,
                        textColor: .red)
             Button("Done", action: checkDigitalValue)
+                .alert("Wrong Format",
+                       isPresented: $alertPresented) {
+                    Button("OK") {}
+                } message: {
+                    Text("Enter value from 0 to 255")
+                }
+
             Spacer()
         }
         .padding()
@@ -26,6 +34,8 @@ struct ContentView: View {
     private func checkDigitalValue() {
         if let _ = Double(digitalValue) {
             sliderValue = Double(digitalValue) ?? 0
+        } else {
+            alertPresented.toggle()
         }
         digitalValue = ""
         return
