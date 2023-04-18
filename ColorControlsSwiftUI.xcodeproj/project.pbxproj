@@ -7,22 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		502AEA8629EEC863007FB823 /* RectangleColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502AEA8529EEC863007FB823 /* RectangleColorView.swift */; };
+		502AEA8829EED354007FB823 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502AEA8729EED354007FB823 /* TextFieldView.swift */; };
 		50FB3DA729ED75BE006B5BBE /* ColorControlsSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3DA629ED75BE006B5BBE /* ColorControlsSwiftUIApp.swift */; };
 		50FB3DA929ED75BE006B5BBE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3DA829ED75BE006B5BBE /* ContentView.swift */; };
 		50FB3DAB29ED75C0006B5BBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50FB3DAA29ED75C0006B5BBE /* Assets.xcassets */; };
 		50FB3DAE29ED75C0006B5BBE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50FB3DAD29ED75C0006B5BBE /* Preview Assets.xcassets */; };
 		50FB3DB529ED7AE0006B5BBE /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3DB429ED7AE0006B5BBE /* SliderView.swift */; };
-		50FB3DB729ED82FF006B5BBE /* DigitalColorValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3DB629ED82FF006B5BBE /* DigitalColorValueView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		502AEA8529EEC863007FB823 /* RectangleColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleColorView.swift; sourceTree = "<group>"; };
+		502AEA8729EED354007FB823 /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		50FB3DA329ED75BE006B5BBE /* ColorControlsSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorControlsSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FB3DA629ED75BE006B5BBE /* ColorControlsSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorControlsSwiftUIApp.swift; sourceTree = "<group>"; };
 		50FB3DA829ED75BE006B5BBE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		50FB3DAA29ED75C0006B5BBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50FB3DAD29ED75C0006B5BBE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		50FB3DB429ED7AE0006B5BBE /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
-		50FB3DB629ED82FF006B5BBE /* DigitalColorValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalColorValueView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 				50FB3DA629ED75BE006B5BBE /* ColorControlsSwiftUIApp.swift */,
 				50FB3DA829ED75BE006B5BBE /* ContentView.swift */,
 				50FB3DB429ED7AE0006B5BBE /* SliderView.swift */,
-				50FB3DB629ED82FF006B5BBE /* DigitalColorValueView.swift */,
+				502AEA8529EEC863007FB823 /* RectangleColorView.swift */,
+				502AEA8729EED354007FB823 /* TextFieldView.swift */,
 				50FB3DAA29ED75C0006B5BBE /* Assets.xcassets */,
 				50FB3DAC29ED75C0006B5BBE /* Preview Content */,
 			);
@@ -143,10 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502AEA8629EEC863007FB823 /* RectangleColorView.swift in Sources */,
+				502AEA8829EED354007FB823 /* TextFieldView.swift in Sources */,
 				50FB3DB529ED7AE0006B5BBE /* SliderView.swift in Sources */,
 				50FB3DA929ED75BE006B5BBE /* ContentView.swift in Sources */,
 				50FB3DA729ED75BE006B5BBE /* ColorControlsSwiftUIApp.swift in Sources */,
-				50FB3DB729ED82FF006B5BBE /* DigitalColorValueView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

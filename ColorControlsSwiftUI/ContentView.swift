@@ -8,31 +8,50 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var sliderValue = Double.random(in: 0...255)
-    @State private var digitalValue = ""
-    @State private var displayedDigitalValue = ""
+    @State private var redSliderValue = Double.random(in: 0...255)
+    @State private var greenSliderValue = Double.random(in: 0...255)
+    @State private var blueSliderValue = Double.random(in: 0...255)
     
     var body: some View {
-        VStack {
-            DigitalColorValueView(sliderValue: $sliderValue,
-                                  displayedDigitalValue: displayedDigitalValue)
-            SliderView(value: $sliderValue,
-                       digitalValue: $digitalValue,
-                       textColor: .red)
-            Button("Done") {
-                checkDigitalValue()
+        ZStack {
+            Color(.blue).ignoresSafeArea()
+            
+            VStack(spacing: 24) {
+                
+                RectangleColorView(redSliderValue: redSliderValue,
+                                   greenSliderValue: greenSliderValue,
+                                   blueSliderValue: blueSliderValue)
+
+                SliderView(digitalValue: $redSliderValue,
+                           sliderColor: .red)
+                
+                SliderView(digitalValue: $greenSliderValue,
+                           sliderColor: .green)
+                
+                SliderView(digitalValue: $blueSliderValue,
+                           sliderColor: .blue)
+
+                Spacer()
             }
-            Spacer()
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        hideKeyboard()
+                    }
+                }
+            }
+            .padding()
         }
-        .padding()
     }
     
-    private func checkDigitalValue() {
-        if let _ = Double(digitalValue) {
-            displayedDigitalValue = digitalValue
-        }
-        digitalValue = ""
-        return
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
     }
 }
 

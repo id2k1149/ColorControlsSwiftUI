@@ -8,19 +8,40 @@
 import SwiftUI
 
 struct SliderView: View {
-    @Binding var value: Double
-    @Binding var digitalValue: String
-    let textColor: Color
+    @Binding var digitalValue: Double
+    @State private var stringValue = ""
+    let sliderColor: Color
     
     var body: some View {
+        
         HStack {
-            Text("0").foregroundColor(textColor)
-            Slider(value: $value, in: 0...255, step: 1)
-            Text("255").foregroundColor(textColor)
-            TextField("0", text: $digitalValue)
-                .frame(width: 48)
-                .textFieldStyle(.roundedBorder)
+        
+            HStack {
+                Spacer()
+                Text("\(lround(digitalValue))")
+                    .foregroundColor(.white)
+                    .bold()
+            }
+            .frame(width: 48)
             
+            Slider(value: $digitalValue, in: 0...255, step: 1)
+                .accentColor(sliderColor)
+                .onChange(of: digitalValue) { newValue in
+                    stringValue = "\(lround(newValue))"
+                }
+            
+            TextFieldView(digitalValue: $digitalValue,
+                          stringValue: $stringValue)
         }
+        .onAppear {
+            stringValue = "\(lround(digitalValue))"
+        }
+
+    }
+}
+
+struct SliderView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
