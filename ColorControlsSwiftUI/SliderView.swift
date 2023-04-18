@@ -63,7 +63,7 @@ struct SliderView: View {
                 if valueAsDouble < 0 || valueAsDouble > 255 {
                     showAlert = true
                 }
-                value = Double(digitalValue) ?? 0
+                value = valueAsDouble
             }
             .cornerRadius(8)
             .keyboardType(.numberPad)
