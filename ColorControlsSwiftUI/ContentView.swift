@@ -12,45 +12,46 @@ struct ContentView: View {
     @State private var greenSliderValue = Double.random(in: 0...255)
     @State private var blueSliderValue = Double.random(in: 0...255)
     
-    @State private var redDigitalValue = ""
-    @State private var greenDigitalValue = ""
-    @State private var blueDigitalValue = ""
-    
     var body: some View {
         ZStack {
             Color(.blue).ignoresSafeArea()
             
             VStack(spacing: 24) {
                 
-                Rectangle()
-                    .frame(height: 200)
-                    .foregroundColor(Color(red: redSliderValue / 255,
-                                           green: greenSliderValue / 255,
-                                           blue: blueSliderValue / 255,
-                                           opacity: 1))
-                   
-                    .cornerRadius(25)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 25)
-                            .stroke(Color.white, lineWidth: 4)
-                    )
+                RectangleColorView(redSliderValue: redSliderValue,
+                                   greenSliderValue: greenSliderValue,
+                                   blueSliderValue: blueSliderValue)
 
-                SliderView(value: $redSliderValue,
-                           digitalValue: $redDigitalValue,
+                SliderView(digitalValue: $redSliderValue,
                            sliderColor: .red)
                 
-                SliderView(value: $greenSliderValue,
-                           digitalValue: $greenDigitalValue,
+                SliderView(digitalValue: $greenSliderValue,
                            sliderColor: .green)
                 
-                SliderView(value: $blueSliderValue,
-                           digitalValue: $blueDigitalValue,
+                SliderView(digitalValue: $blueSliderValue,
                            sliderColor: .blue)
 
                 Spacer()
             }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        hideKeyboard()
+                    }
+                }
+            }
             .padding()
         }
+    }
+    
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
     }
 }
 

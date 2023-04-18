@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct SliderView: View {
-    @Binding var value: Double
-    @Binding var digitalValue: String
+    @Binding var digitalValue: Double
+    @State private var stringValue = ""
     let sliderColor: Color
-    
-    @State private var showAlert = false
-    @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
         
@@ -21,52 +18,23 @@ struct SliderView: View {
         
             HStack {
                 Spacer()
-                Text("\(lround(value))")
+                Text("\(lround(digitalValue))")
                     .foregroundColor(.white)
                     .bold()
             }
             .frame(width: 48)
             
-            Slider(value: $value, in: 0...255, step: 1)
+            Slider(value: $digitalValue, in: 0...255, step: 1)
                 .accentColor(sliderColor)
-            
-            TextField("",
-                      text: Binding(
-                        get: {
-                            "\(lround(value))"
-                        },
-                        set: {newValue in
-                            if let valueAsDouble = Double(newValue) {
-                                digitalValue = newValue
-                                value = valueAsDouble
-                            } else {
-                                showAlert = true
-                            }
-                        }
-                      ))
-            .frame(width: 64)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .foregroundColor(.black)
-            .background(Color.white)
-            .bold()
-            .focused($isTextFieldFocused)
-            .onTapGesture {
-                isTextFieldFocused = true
-            }
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("Invalid Input"),
-                      message: Text("Please enter a valid number"),
-                      dismissButton: .default(Text("OK")))
-            }
-            .onSubmit {
-                guard let valueAsDouble = Double(digitalValue) else { return}
-                if valueAsDouble < 0 || valueAsDouble > 255 {
-                    showAlert = true
+                .onChange(of: digitalValue) { newValue in
+                    stringValue = "\(lround(newValue))"
                 }
-                value = valueAsDouble
-            }
-            .cornerRadius(8)
-            .keyboardType(.numberPad)
+            
+            TextFieldView(digitalValue: $digitalValue,
+                          stringValue: $stringValue)
+        }
+        .onAppear {
+            stringValue = "\(lround(digitalValue))"
         }
 
     }
