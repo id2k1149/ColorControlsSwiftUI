@@ -16,18 +16,11 @@ struct ContentView: View {
     @State private var greenDigitalValue = ""
     @State private var blueDigitalValue = ""
     
-//    @State private var alertPresented = false
-    
     var body: some View {
         ZStack {
-            Color(.cyan).ignoresSafeArea()
+            Color(.blue).ignoresSafeArea()
             
-            VStack {
-//                HStack {
-//                    Text("\(lround(redSliderValue))").font(.largeTitle)
-//                    Text("\(lround(greenSliderValue))").font(.largeTitle)
-//                    Text("\(lround(blueSliderValue))").font(.largeTitle)
-//                }
+            VStack(spacing: 24) {
                 
                 Rectangle()
                     .frame(height: 200)
@@ -53,21 +46,11 @@ struct ContentView: View {
                 SliderView(value: $blueSliderValue,
                            digitalValue: $blueDigitalValue,
                            sliderColor: .blue)
-                
-                /*
-                Button("Done", action: checkDigitalValue)
-                    .alert(
-                        "Wrong Format",
-                        isPresented: $alertPresented,
-                        actions: {}
-                    ) { Text("Enter value from 0 to 255") }
-                 */
 
                 Spacer()
             }
             .padding()
         }
-        
     }
 }
 

@@ -12,60 +12,61 @@ struct SliderView: View {
     @Binding var digitalValue: String
     let sliderColor: Color
     
+    @State private var showAlert = false
+    @FocusState private var isTextFieldFocused: Bool
+    
     var body: some View {
+        
         HStack {
-//            Text("0")
-//                .foregroundColor(sliderColor)
-//                .bold()
+        
             HStack {
-                Text("\(sliderColor.description):")
-                    .bold()
-
                 Spacer()
                 Text("\(lround(value))")
+                    .foregroundColor(.white)
                     .bold()
             }
-            .frame(width: 96)
+            .frame(width: 48)
             
             Slider(value: $value, in: 0...255, step: 1)
                 .accentColor(sliderColor)
-//            Text("255")
-//                .foregroundColor(sliderColor)
-//                .bold()
-            TextField("", text: $digitalValue)
-                .frame(width: 48)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-//                .onAppear {
-//                    digitalValue = "\(lround(value))"
-//                }
-                .keyboardType(.numberPad)
-                .overlay(
-                    Text("\(lround(value))")
-                        .foregroundColor(.black)
-                        .font(.system(size: 16))
-                        .bold()
-                        .opacity(digitalValue.isEmpty ? 1 : 0)
-                )
-                .onSubmit {
-                    // Add your action here
-                    if let _ = Double(digitalValue) {
-                        value = Double(digitalValue) ?? 0
-                    }
-                    digitalValue = ""
-                }
-            /*
-                .onChange(of: digitalValue) { newValue in
-                    if let intValue = Int(newValue), (0...255).contains(intValue) {
-                        print("Valid value entered: \(intValue)")
-                        // Add your valid value action here
-                    } else {
-                        print("Invalid value entered: \(newValue)")
-                        // Add your invalid value action here, such as showing an alert
-                    }
-                }
-             */
-
             
+            TextField("",
+                      text: Binding(
+                        get: {
+                            "\(lround(value))"
+                        },
+                        set: {newValue in
+                            if let valueAsDouble = Double(newValue) {
+                                digitalValue = newValue
+                                value = valueAsDouble
+                            } else {
+                                showAlert = true
+                            }
+                        }
+                      ))
+            .frame(width: 64)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .foregroundColor(.black)
+            .background(Color.white)
+            .bold()
+            .focused($isTextFieldFocused)
+            .onTapGesture {
+                isTextFieldFocused = true
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Invalid Input"),
+                      message: Text("Please enter a valid number"),
+                      dismissButton: .default(Text("OK")))
+            }
+            .onSubmit {
+                guard let valueAsDouble = Double(digitalValue) else { return}
+                if valueAsDouble < 0 || valueAsDouble > 255 {
+                    showAlert = true
+                }
+                value = Double(digitalValue) ?? 0
+            }
+            .cornerRadius(8)
+            .keyboardType(.numberPad)
         }
 
     }
