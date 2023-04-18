@@ -18,7 +18,6 @@ struct TextFieldView: View {
     var body: some View {
         TextField("", text: $stringValue)
         .frame(width: 56)
-        .cornerRadius(8)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .foregroundColor(.black)
         .background(Color.white)
@@ -34,6 +33,7 @@ struct TextFieldView: View {
                 validate()
             }
         }
+        .cornerRadius(8)
     }
 }
 
