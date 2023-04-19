@@ -12,9 +12,15 @@ struct ContentView: View {
     @State private var greenSliderValue = Double.random(in: 0...255)
     @State private var blueSliderValue = Double.random(in: 0...255)
     
+    @FocusState private var isTextFieldFocused: Bool
+    
     var body: some View {
         ZStack {
-            Color(.blue).ignoresSafeArea()
+            Color(red: 0, green: 0.3765624762, blue: 0.7304599881)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    isTextFieldFocused = false
+                }
             
             VStack(spacing: 24) {
                 
@@ -33,25 +39,17 @@ struct ContentView: View {
 
                 Spacer()
             }
+            .focused($isTextFieldFocused)
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
                     Button("Done") {
-                        hideKeyboard()
+                        isTextFieldFocused = false
                     }
                 }
             }
             .padding()
         }
-    }
-    
-    private func hideKeyboard() {
-        UIApplication.shared.sendAction(
-            #selector(UIResponder.resignFirstResponder),
-            to: nil,
-            from: nil,
-            for: nil
-        )
     }
 }
 

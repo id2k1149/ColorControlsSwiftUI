@@ -10,6 +10,7 @@ import SwiftUI
 struct SliderView: View {
     @Binding var digitalValue: Double
     @State private var stringValue = ""
+    
     let sliderColor: Color
     
     var body: some View {
@@ -42,6 +43,10 @@ struct SliderView: View {
 
 struct SliderView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ZStack {
+            Color.gray
+            SliderView(digitalValue: .constant(100),
+                       sliderColor: .red)
+        }
     }
 }

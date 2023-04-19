@@ -13,11 +13,17 @@ struct TextFieldView: View {
     
     @State private var showAlert = false
     
-    @FocusState private var isTextFieldFocused: Bool
-    
     var body: some View {
-        TextField("", text: $stringValue)
+        TextField("",
+                  text: $stringValue,
+                  onEditingChanged: { _ in
+                        withAnimation {
+                            validate()
+                        }
+                    }
+        )
         .frame(width: 56)
+        .multilineTextAlignment(.trailing)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .foregroundColor(.black)
         .background(Color.white)
@@ -28,35 +34,33 @@ struct TextFieldView: View {
                   message: Text("Please enter a number from 0 to 255"),
                   dismissButton: .default(Text("OK")))
         }
-        .onSubmit {
-            withAnimation {
-                validate()
-            }
-        }
+//        .onSubmit {
+//            withAnimation {
+//                validate()
+//            }
+//        }
         .cornerRadius(8)
     }
 }
 
 extension TextFieldView {
     private func validate() {
-        guard let valueAsDouble = Double(stringValue) else {
-            showAlert = true
-            stringValue = "\(lround(digitalValue))"
+        if let value = Int(stringValue), (0...255).contains(value) {
+            self.digitalValue = Double(value)
             return
-            }
-        
-        if valueAsDouble < 0 || valueAsDouble > 255 {
-            showAlert = true
-            stringValue = "\(lround(digitalValue))"
-        } else {
-            digitalValue = valueAsDouble
         }
-        
+        showAlert.toggle()
+        digitalValue = 0
+        stringValue = "0"
     }
 }
 
 struct TextFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ZStack {
+            Color.gray
+            TextFieldView(digitalValue: .constant(128.0),
+                          stringValue: .constant("128"))
+        }
     }
 }
